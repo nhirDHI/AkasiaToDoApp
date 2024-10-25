@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -6,7 +7,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ToDo.Application.Contracts.Data;
 using ToDo.Data.DatabaseContext;
+using ToDo.Data.Repositories;
+using ToDo.Domain.Entities;
 
 namespace ToDo.Data
 {
@@ -17,6 +21,29 @@ namespace ToDo.Data
             services.AddDbContext<ToDoContext>(options => {
                 options.UseSqlServer(configuration.GetConnectionString("AkasiaToDoConnectionString"));
             });
+
+            services.AddIdentity<ApplicationUser, IdentityRole>()
+                .AddEntityFrameworkStores<ToDoContext>().AddDefaultTokenProviders();
+
+            // Register a generic repository for CRUD operations, using a scoped lifetime.
+            // Scoped lifetime means a new instance is created for each request.
+            services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+
+            // Register a specific repository for Google Analytics content.
+            // This repository will be available with a scoped lifetime.
+            //services.AddScoped<IGoogleAnalyticContentRepository, GoogleAnalyticContentRepository>();
+
+            // Ensure the database is created or migrated when the application starts.
+            var serviceProvider = services.BuildServiceProvider();
+            using (var scope = serviceProvider.CreateScope())
+            {
+                var dbContext = scope.ServiceProvider.GetRequiredService<ToDoContext>();
+
+                //  Uncomment one of the following lines depending on your requirements:
+                //dbContext.Database.EnsureDeleted();
+                dbContext.Database.EnsureCreated(); // Creates the database if it does not exist.
+                //dbContext.Database.Migrate(); // Applies any pending migrations.
+            }
 
             return services;
         }
