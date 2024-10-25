@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ToDo.Application.Contracts.Data;
+using ToDo.Application.Contracts.Identity;
 using ToDo.Application.Contracts.Infrastructure.Logging;
 using ToDo.Application.Exceptions;
 using ToDo.Application.Features.ToDoActivity.Commands.UpdateActivity;
@@ -16,12 +17,14 @@ namespace ToDo.Application.Features.ToDoActivity.Commands.CreateActivity
     {
         private readonly IMapper _mapper;
         private readonly IAppLogger<CreateActivityCommandHandler> _appLogger;
+        private readonly IUserService _userService;
         private readonly IToDoActivityRepository _toDoActivityRepository;
 
-        public CreateActivityCommandHandler(IMapper mapper, IAppLogger<CreateActivityCommandHandler> appLogger, IToDoActivityRepository toDoActivityRepository)
+        public CreateActivityCommandHandler(IMapper mapper, IAppLogger<CreateActivityCommandHandler> appLogger, IUserService userService, IToDoActivityRepository toDoActivityRepository)
         {
             this._mapper = mapper;
             this._appLogger = appLogger;
+            this._userService = userService;
             this._toDoActivityRepository = toDoActivityRepository;
         }
 

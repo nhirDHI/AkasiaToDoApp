@@ -1,10 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using ToDo.Application.Contracts.Identity;
 using ToDo.Data.ModelConfigurations;
 using ToDo.Domain.Common;
 using ToDo.Domain.Entities;
@@ -13,8 +9,11 @@ namespace ToDo.Data.DatabaseContext
 {
     public class ToDoContext : IdentityDbContext<ApplicationUser>
     {
-        public ToDoContext(DbContextOptions<ToDoContext> options) : base(options)
+        private readonly IUserService _userService;
+
+        public ToDoContext(DbContextOptions<ToDoContext> options, IUserService userService) : base(options)
         {
+            this._userService = userService;
         }
 
         public DbSet<ToDoActivity> ToDoActivities { get; set; }
@@ -39,10 +38,11 @@ namespace ToDo.Data.DatabaseContext
                 .Where(q => q.State == EntityState.Added || q.State == EntityState.Modified))
             {
                 entry.Entity.UpdatedDate = DateTime.UtcNow;
-
+                entry.Entity.UpdatedUser = _userService.UserId;
                 if (entry.State == EntityState.Added)
                 {
                     entry.Entity.CreatedDate = DateTime.UtcNow;
+                    entry.Entity.CreatedUser = _userService.UserId;
                 }
             }
 
