@@ -18,15 +18,13 @@ namespace ToDo.Application.UnitTests.Features.Commands
     public class CreateActivityCommandTest
     {
         private readonly IMapper _mapper;
-        private readonly Mock<IAppLogger<CreateActivityCommandHandler>> _mockLogger;
-        private readonly Mock<IUserService> _mockUserService;
+        private Mock<IAppLogger<CreateActivityCommandHandler>> _mockLogger;
         private readonly Mock<IToDoActivityRepository> _mockToDoActivityRepository;
 
         public CreateActivityCommandTest()
         {
             // Mock the dependencies
             _mockLogger = new Mock<IAppLogger<CreateActivityCommandHandler>>();
-            _mockUserService = new Mock<IUserService>();
             _mockToDoActivityRepository = MockToDoActivityRepository.GetMockToDoActivityRepository();
 
             // Setup Mapper configuration
@@ -41,7 +39,7 @@ namespace ToDo.Application.UnitTests.Features.Commands
         [Fact]
         public async Task Handle_ValidToDoActivity()
         {
-            var handler = new CreateActivityCommandHandler(_mapper, _mockLogger.Object, _mockUserService.Object, _mockToDoActivityRepository.Object);
+            var handler = new CreateActivityCommandHandler(_mapper, _mockLogger.Object, _mockToDoActivityRepository.Object);
 
             await handler.Handle(new CreateActivityCommandDto()
             {

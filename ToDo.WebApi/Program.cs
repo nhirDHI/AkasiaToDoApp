@@ -22,8 +22,6 @@ builder.Services.AddInfrastructureServices(builder.Configuration);
 builder.Services.AddIdentityServices(builder.Configuration);
 builder.Services.AddDataServices(builder.Configuration);
 
-
-
 builder.Services.AddControllers();
 // Read CORS settings from appsettings.json
 var corsSettings = builder.Configuration.GetSection("CorsSettings").Get<CorsSettings>();

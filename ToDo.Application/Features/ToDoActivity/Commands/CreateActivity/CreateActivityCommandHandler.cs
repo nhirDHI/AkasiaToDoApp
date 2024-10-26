@@ -17,14 +17,12 @@ namespace ToDo.Application.Features.ToDoActivity.Commands.CreateActivity
     {
         private readonly IMapper _mapper;
         private readonly IAppLogger<CreateActivityCommandHandler> _appLogger;
-        private readonly IUserService _userService;
         private readonly IToDoActivityRepository _toDoActivityRepository;
 
-        public CreateActivityCommandHandler(IMapper mapper, IAppLogger<CreateActivityCommandHandler> appLogger, IUserService userService, IToDoActivityRepository toDoActivityRepository)
+        public CreateActivityCommandHandler(IMapper mapper, IAppLogger<CreateActivityCommandHandler> appLogger, IToDoActivityRepository toDoActivityRepository)
         {
             this._mapper = mapper;
             this._appLogger = appLogger;
-            this._userService = userService;
             this._toDoActivityRepository = toDoActivityRepository;
         }
 
@@ -39,8 +37,6 @@ namespace ToDo.Application.Features.ToDoActivity.Commands.CreateActivity
                 _appLogger.LogWarning("Validation errors in update request for {0} - {1}", nameof(ToDoActivity), request.Subject);
                 throw new BadRequestException("Invalid Content Type", validationResult);
             }
-
-            
 
             // Convert to domain entity object
             var itemToCreate = _mapper.Map<Domain.Entities.ToDoActivity>(request);
