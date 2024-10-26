@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ToDo.Domain.Entities
+namespace ToDo.Identity.Models
 {
     public class ApplicationUser : IdentityUser
     {

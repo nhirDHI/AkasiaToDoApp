@@ -7,8 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ToDo.Domain.Entities;
+using ToDo.Identity.Models;
 
-namespace ToDo.Data.ModelConfigurations.Identity
+namespace ToDo.Identity.Configurations
 {
     public class UserConfiguration : IEntityTypeConfiguration<ApplicationUser>
     {

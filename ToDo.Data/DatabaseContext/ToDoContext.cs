@@ -7,7 +7,7 @@ using ToDo.Domain.Entities;
 
 namespace ToDo.Data.DatabaseContext
 {
-    public class ToDoContext : IdentityDbContext<ApplicationUser>
+    public class ToDoContext : DbContext
     {
         private readonly IUserService _userService;
 

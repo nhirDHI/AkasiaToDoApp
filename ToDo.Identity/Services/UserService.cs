@@ -8,9 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using ToDo.Application.Contracts.Identity;
 using ToDo.Application.Models.Identity;
-using ToDo.Domain.Entities;
+using ToDo.Identity.Models;
 
-namespace ToDo.Application.Services.Data.Identity
+namespace ToDo.Identity.Services
 {
     public class UserService : IUserService
     {

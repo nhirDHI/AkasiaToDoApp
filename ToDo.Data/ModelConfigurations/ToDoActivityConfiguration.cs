@@ -14,7 +14,7 @@ namespace ToDo.Data.ModelConfigurations
         public void Configure(EntityTypeBuilder<ToDoActivity> builder)
         {
             // Table and primary key configuration
-            builder.ToTable("ToDoActivity", schema: "AkasiaToDo");
+            builder.ToTable("ToDoActivity");
             builder.HasKey(p => p.Id);
         }
     }

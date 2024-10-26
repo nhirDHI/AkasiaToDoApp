@@ -11,9 +11,9 @@ using System.Threading.Tasks;
 using ToDo.Application.Contracts.Identity;
 using ToDo.Application.Exceptions;
 using ToDo.Application.Models.Identity;
-using ToDo.Domain.Entities;
+using ToDo.Identity.Models;
 
-namespace ToDo.Application.Services.Data.Identity
+namespace ToDo.Identity.Services
 {
     public class AuthService : IAuthService
     {
@@ -32,15 +32,12 @@ namespace ToDo.Application.Services.Data.Identity
 
         public async Task<AuthResponse> Login(AuthRequest request)
         {
-
             var user = await _userManager.FindByEmailAsync(request.Email);
 
             if (user == null)
             {
                 throw new NotFoundException($"User with {request.Email} not found.", request.Email);
             }
-
-            var userRoles = await _userManager.GetRolesAsync(user);
 
             var result = await _signInManager.CheckPasswordSignInAsync(user, request.Password, false);
 
@@ -78,7 +75,7 @@ namespace ToDo.Application.Services.Data.Identity
 
             if (result.Succeeded)
             {
-                await _userManager.AddToRoleAsync(user, "Administrator");
+                await _userManager.AddToRoleAsync(user, "Employee");
                 return new RegistrationResponse() { UserId = user.Id };
             }
             else
@@ -105,8 +102,7 @@ namespace ToDo.Application.Services.Data.Identity
                 new Claim(JwtRegisteredClaimNames.Sub, user.UserName),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                 new Claim(JwtRegisteredClaimNames.Email, user.Email),
-                new Claim("uid", user.Id),
-                new Claim("name", (user.FirstName + " " + user.LastName))
+                new Claim("uid", user.Id)
             }
             .Union(userClaims)
             .Union(roleClaims);

@@ -13,7 +13,7 @@ namespace ToDo.WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class ToDoActivityController : ControllerBase
     {
         private readonly IMediator _mediator;

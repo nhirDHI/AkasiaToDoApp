@@ -35,7 +35,7 @@ namespace ToDo.Application.Features.ToDoActivity.Commands.DeleteActivity
                 throw new NotFoundException(nameof(ToDoActivity), request.Id);
 
             // remove from database
-            await _toDoActivityRepository.DeleteAsync(itemToDelete.Id);
+            await _toDoActivityRepository.DeleteAsync(itemToDelete);
 
             // retun record id
             return Unit.Value;

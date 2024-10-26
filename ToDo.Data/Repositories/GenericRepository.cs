@@ -2,6 +2,7 @@
 using ToDo.Application.Contracts.Data;
 using ToDo.Data.DatabaseContext;
 using ToDo.Domain.Common;
+using ToDo.Domain.Entities;
 
 namespace ToDo.Data.Repositories
 {
@@ -20,9 +21,15 @@ namespace ToDo.Data.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task DeleteAsync(int id)
+        //public async Task DeleteAsync(int id)
+        //{
+        //    _context.Remove(id);
+        //    await _context.SaveChangesAsync();
+        //}
+
+        public async Task DeleteAsync(T entity)
         {
-            _context.Remove(id);
+            _context.Remove(entity);
             await _context.SaveChangesAsync();
         }
 

@@ -14,6 +14,6 @@ namespace ToDo.Application.Contracts.Data
         Task<T> GetByIdAsync(int id);
         Task CreateAsync(T entity);
         Task UpdateAsync(int id, T entity);
-        Task DeleteAsync(int id);
+        Task DeleteAsync(T entity);
     }
 }

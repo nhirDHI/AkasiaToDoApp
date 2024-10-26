@@ -13,11 +13,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToDo.Domain", "ToDo.Domain\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToDo.Data", "ToDo.Data\ToDo.Data.csproj", "{544574C0-2F5C-4DC0-BD33-DD8C01DCCA5E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToDo.Application", "ToDo.Application\ToDo.Application.csproj", "{E182B444-09EB-4B7B-A587-6D47C9058D8B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToDo.Application", "ToDo.Application\ToDo.Application.csproj", "{E182B444-09EB-4B7B-A587-6D47C9058D8B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToDo.Infrastructure", "ToDo.Infrastructure\ToDo.Infrastructure.csproj", "{5D737446-699D-45F2-A3ED-E7E3F81A1473}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToDo.Infrastructure", "ToDo.Infrastructure\ToDo.Infrastructure.csproj", "{5D737446-699D-45F2-A3ED-E7E3F81A1473}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToDo.WebApi", "ToDo.WebApi\ToDo.WebApi.csproj", "{48A3A217-CB58-47A9-8D26-45074F393856}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToDo.WebApi", "ToDo.WebApi\ToDo.WebApi.csproj", "{48A3A217-CB58-47A9-8D26-45074F393856}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToDo.Identity", "ToDo.Identity\ToDo.Identity.csproj", "{1CD57325-F700-45BC-86A0-DB12568CD074}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{48A3A217-CB58-47A9-8D26-45074F393856}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{48A3A217-CB58-47A9-8D26-45074F393856}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{48A3A217-CB58-47A9-8D26-45074F393856}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1CD57325-F700-45BC-86A0-DB12568CD074}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1CD57325-F700-45BC-86A0-DB12568CD074}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1CD57325-F700-45BC-86A0-DB12568CD074}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1CD57325-F700-45BC-86A0-DB12568CD074}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -55,6 +61,7 @@ Global
 		{E182B444-09EB-4B7B-A587-6D47C9058D8B} = {EE3651C7-AC28-4296-85AA-E8B4E1EB5778}
 		{5D737446-699D-45F2-A3ED-E7E3F81A1473} = {BCA3EB5A-D658-4D0E-B268-9EAE3AC6EBEE}
 		{48A3A217-CB58-47A9-8D26-45074F393856} = {69BDA195-7873-4409-959A-36600CDEC514}
+		{1CD57325-F700-45BC-86A0-DB12568CD074} = {BCA3EB5A-D658-4D0E-B268-9EAE3AC6EBEE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1C1566A4-65B7-4B80-BBE3-145797A2038B}

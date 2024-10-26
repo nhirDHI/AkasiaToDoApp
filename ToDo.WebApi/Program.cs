@@ -2,6 +2,7 @@ using Microsoft.OpenApi.Models;
 using Serilog;
 using ToDo.Application;
 using ToDo.Data;
+using ToDo.Identity;
 using ToDo.Infrastructure;
 using ToDo.WebApi.Middleware;
 using ToDo.WebApi.Models;
@@ -16,9 +17,12 @@ builder.Host.UseSerilog((context, loggerConfig) => loggerConfig
     .ReadFrom.Configuration(context.Configuration)); // Read logging configuration from appsettings.json
 
 // Register application, persistence, and infrastructure services with the DI container
-builder.Services.AddInfrastructureServices(builder.Configuration);
-builder.Services.AddDataServices(builder.Configuration);
 builder.Services.AddApplicationServices(builder.Configuration);
+builder.Services.AddInfrastructureServices(builder.Configuration);
+builder.Services.AddIdentityServices(builder.Configuration);
+builder.Services.AddDataServices(builder.Configuration);
+
+
 
 builder.Services.AddControllers();
 // Read CORS settings from appsettings.json

@@ -2,11 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ToDo.Application.Contracts.Data;
 using ToDo.Data.DatabaseContext;
 using ToDo.Data.Repositories;
@@ -18,20 +13,15 @@ namespace ToDo.Data
     {
         public static IServiceCollection AddDataServices(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddDbContext<ToDoContext>(options => {
+            services.AddDbContext<ToDoContext>(options =>
+            {
                 options.UseSqlServer(configuration.GetConnectionString("AkasiaToDoConnectionString"));
             });
-
-            services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<ToDoContext>().AddDefaultTokenProviders();
 
             // Register a generic repository for CRUD operations, using a scoped lifetime.
             // Scoped lifetime means a new instance is created for each request.
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
-
-            // Register a specific repository for Google Analytics content.
-            // This repository will be available with a scoped lifetime.
-            //services.AddScoped<IGoogleAnalyticContentRepository, GoogleAnalyticContentRepository>();
+            services.AddScoped<IToDoActivityRepository, ToDoActivityRepository>();
 
             // Ensure the database is created or migrated when the application starts.
             var serviceProvider = services.BuildServiceProvider();
